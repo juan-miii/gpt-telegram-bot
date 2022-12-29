@@ -1,3 +1,6 @@
+# Telegram Bot to communicate with OpenAI API
+# @author juan-miii
+
 import logging
 from os import environ as env
 from dotenv import load_dotenv
