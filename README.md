@@ -31,7 +31,7 @@ Once you have your Telegram and OpenAI accounts, gather the keys.
 2. Create a new secret key and copy it to the clipboard. This is your **OPENAI_API_KEY**. It should look like this: `xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 3. Paste it in your .env file in the field **OPENAI_API_KEY**
 4. Set!
-_Beaware that you will be using your own OpenAI credit so charges might be applied._
+_Be aware that you will be using your own OpenAI credit so charges might be applied._
 
 **Telegram Bot key:**
 1. Open Telegram in any of your devices
