@@ -20,7 +20,7 @@ user_id = int(env["USER_KEY"])
 @bot.message_handler(func=lambda message: True)
 def get_codex(message):
   if int(message.chat.id) != user_id:
-    bot.send_message("This is an only user bot. Please, to get it for your own go to //INCLUDE GITHUB")
+    bot.send_message("This is an only user bot. Please, to get it for your own go to https://github.com/juan-miii/gpt-telegram-bot")
   else:
     response = openai.Completion.create(
      #engine = "text-davinci-003",
