@@ -1,5 +1,5 @@
 # Telegram Bot to communicate with OpenAI API
-# @author juan-miii
+# forked from juan-miii, modified by han3on
 
 import logging
 from os import environ as env
