@@ -18,25 +18,35 @@ openai.api_key = env["OPENAI_API_KEY"]
 user_id = int(env["USER_KEY"])
 
 @bot.message_handler(func=lambda message: True)
-def get_codex(message):
+def get_response(message):
   if int(message.chat.id) != user_id:
     bot.send_message("This boti not for public but private use only.")
   else:
-    response = openai.Completion.create(
-     #engine = "text-davinci-003",
-      engine = "text-davinci-001",
-     #engine = "text-curie-001",
-     #engine = "text-babbage-001",
-     #engine = "text-ada-001",
-     #engine = "code-davinci-002",
-     #engine = "code-cushman-001",
-      prompt = '"""\n{}\n"""'.format(message.text),
-      temperature = 0,
-      max_tokens = 1200,
-      top_p = 1,
-      frequency_penalty = 0,
-      presence_penalty = 0,
-      stop = ['"""'])
+    response = ""
+    if message.text.startswith(">>>"):
+      # Use Codex API for code completion
+      response = openai.Completion.create(
+        engine="code-davinci-002",
+        prompt=f'```\n{message.text[3:]}\n```',
+        temperature=0,
+        max_tokens=8000,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=["\n", ">>>"],
+      )
+    else:
+      # Use GPT API for text completion
+      response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f'"""\n{message.text}\n"""',
+        temperature=0,
+        max_tokens=4000,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=['"""'],
+      )
 
     bot.send_message(message.chat.id, f'{response["choices"][0]["text"]}', parse_mode="None")
 
